@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
+
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container" style="padding-left:5rem !important; padding-right:5rem !important;">
+        <div class="row">
+            <h3>AdBrix Remaster Hybrid Sample Web - Kotlin</h3>
+        </div>
+        <hr>
+
+        <div class="row">
+            <h4>Sample Purchase Event</h4>
+            <div>
+                <ul>
+                    <li>sample_order_id = 'o_23456'
+                    <li>sample_product_id = 'p23456'</li>
+                    <li>sample_product_name = 'sample-purchase-goods'</li>
+                    <li>sample_price = 12900.00</li>
+                    <li>sample_quantity = 3</li>
+                    <li>sample_category = 'A1/B2/C3/D4/E5'</li>
+                    <li>sample_currency = 'krw'</li>
+                    <li>sample_discount = 0.00</li>
+                    <li>sample_delivery_charge = 0.00</li>
+                    <li>sample_payment_method = 1</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary" onclick="abxrm_purchase();">CLICK ME</button>
+        </div>
+<hr>
+        <div class="row">
+            <h4>Sample ProductView Event</h4>
+            <div>
+                <ul>
+                    <li>sample_product_id = 'p23456'</li>
+                    <li>sample_product_name = 'sample-purchase-goods'</li>
+                    <li>sample_price = 12900.00</li>
+                    <li>sample_quantity = 3</li>
+                    <li>sample_category = 'A1/B2/C3/D4/E5'</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary" onclick="abxrm_product_view();">CLICK ME</button>
+        </div>
+<hr>
+        <div class="row">
+            <h4>Sample addToCart Event</h4>
+            <div>
+                <ul>
+                    <li>sample_product_id = 'p23456'</li>
+                    <li>sample_product_name = 'sample-purchase-goods'</li>
+                    <li>sample_price = 12900.00</li>
+                    <li>sample_quantity = 3</li>
+                    <li>sample_category = 'A1/B2/C3/D4/E5'</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary" onclick="abxrm_add_to_cart();">CLICK ME</button>
+        </div>
+        <hr>
+    
+    </div>
+    
+    <script type="text/javascript">
+    
+        function abxrm_purchase() {
+            var sample_order_id = 'o_23456'
+            var sample_product_id = 'p23456';
+            var sample_product_name = 'sample-purchase-goods';
+            var sample_price = 12900.00;
+            var sample_quantity = 3;
+            var sample_category = 'A1/B2/C3/D4/E5';
+            var sample_currency = 'krw';
+            var sample_discount = 0.00;
+            var sample_delivery_charge = 0.00;
+            var sample_payment_method = 1;
+            /*
+            payment_method {
+                1 : credit card
+                2 : banking
+                3 : mobile payment
+                4 : etc
+            }
+            
+                
+            */
+
+            getSafe(() => adbrixrm.purchase(
+                sample_order_id, 
+                sample_product_id, 
+                sample_product_name, 
+                sample_price, 
+                sample_quantity, 
+                sample_category,
+                sample_currency,
+                sample_discount,
+                sample_delivery_charge,
+                sample_payment_method
+                )
+            );
+        }
+
+
+        function abxrm_product_view(){
+            
+            var sample_product_id = 'p12345';
+            var sample_product_name = 'sample-product_view-goods';
+            var sample_price = 9900.00;
+            var sample_quantity = 1;
+            var sample_category = 'A1/B2/C3/D4/E5';
+    
+            getSafe(() => adbrixrm.product_view(
+                sample_product_id, 
+                sample_product_name, 
+                sample_price, 
+                sample_quantity, 
+                sample_category
+                )
+            );
+             
+        }
+
+
+        function abxrm_add_to_cart() {
+             
+            var sample_product_id = 'p987432';
+            var sample_product_name = 'sample-add_to_cart-goods';
+            var sample_price = 9900.00;
+            var sample_quantity = 1;
+            var sample_category = 'A1/B2/C3/D4/E5';
+    
+            getSafe(() => adbrixrm.add_to_cart(
+                sample_product_id, 
+                sample_product_name, 
+                sample_price, 
+                sample_quantity, 
+                sample_category
+                )
+            );
+        }
+
+        function getSafe(fn) {
+            try {
+                return fn();
+            } catch (e) {
+                return undefined;
+            }
+        }
+    
+    </script>
+    
+    </body>
+</html> 
+    
